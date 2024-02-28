@@ -7,6 +7,7 @@ import com.example.COVISHOT.dto.ResponseDTO.UserResponseDto;
 import com.example.COVISHOT.model.User;
 import com.example.COVISHOT.repository.UserRepository;
 import com.example.COVISHOT.service.UserService;
+import com.example.COVISHOT.transformer.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,31 +23,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto addUser(UserRequestDto userRequestDto) {
 
-       //convert requestDTO to entity
-
-        User user = new User();
-        user.setName(userRequestDto.getName());
-        user.setAge(userRequestDto.getAge());
-        user.setEmailId(userRequestDto.getEmailId());
-        user.setGender(userRequestDto.getGender());
-        user.setMobNo(userRequestDto.getMobNo());
+        User user = UserTransformer.UserRequestDtoToUser(userRequestDto);
 
         //save the object
         User savedUser = userRepository.save(user);
 
         //convert entity to responseDto
 
-        UserResponseDto userResponseDto = new UserResponseDto();
-        userResponseDto.setName(savedUser.getName());
-        userResponseDto.setMessage("Congrats "+savedUser.getName()+"! You have Successfully registered on COVISHOT");
+        UserResponseDto userResponseDto = UserTransformer.UserToUserResponseDto(savedUser);
 
         return userResponseDto;
     }
 
     @Override
     public UserDetailsDto findByEmailId(String emailId) {
-
-//        User user = userRepository.findByEmailId(emailId);
 
         User user = userRepository.findByEmailId(emailId);
 

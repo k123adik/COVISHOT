@@ -2,10 +2,7 @@ package com.example.COVISHOT.model;
 
 import com.example.COVISHOT.Enum.Gender;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class Doctor {
 
     @Id
@@ -32,7 +30,7 @@ public class Doctor {
     String emailId;
 
     @Column(name = "mob_no", unique = true, nullable = false)
-    String monNo;
+    String mobNo;
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
