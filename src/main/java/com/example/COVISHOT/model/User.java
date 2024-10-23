@@ -52,4 +52,8 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     Dose2 dose2;
+
+    @ManyToOne
+    @JoinColumn
+    Doctor doctor;
 }

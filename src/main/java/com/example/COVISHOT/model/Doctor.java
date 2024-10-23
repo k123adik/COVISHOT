@@ -42,4 +42,7 @@ public class Doctor {
     @ManyToOne
     @JoinColumn
     VaccinationCenter vaccinationCenter;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    List<User> users = new ArrayList<>();
 }

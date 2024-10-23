@@ -17,12 +17,9 @@ import com.example.COVISHOT.service.Dose2Service;
 import com.example.COVISHOT.transformer.AppointmentTransformer;
 import com.example.COVISHOT.transformer.VaccinationCenterTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
@@ -42,8 +39,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Autowired
     AppointmentRepository appointmentRepository;
 
-    @Autowired
-    private JavaMailSender emailSender;
+//
 
 
     @Override
@@ -94,13 +90,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         //send email
 
-        String text = "Congrats!"+ user.getName() + " Your dose" + appointmentRequestDto.getDoseNo() + " has been booked!";
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@baeldung.com");
-        message.setTo(user.getEmailId());
-        message.setSubject("Appointment Booked");
-        message.setText(text);
-        emailSender.send(message);
+//        String text = "Congrats!"+ user.getName() + " Your dose" + appointmentRequestDto.getDoseNo() + " has been booked!";
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setFrom("noreply@baeldung.com");
+//        message.setTo(user.getEmailId());
+//        message.setSubject("Appointment Booked");
+//        message.setText(text);
+//        emailSender.send(message);
 
         VaccinationCenterResponseDto vaccinationCenterResponseDto = VaccinationCenterTransformer.centerToCenterResponseDto(doctor.getVaccinationCenter());
 
